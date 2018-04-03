@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+<head>
+        <link rel="stylesheet" href="todo_style.css">
+</head>
+<body>
+    {% block content %}
+        <div class="well">
+          <form method="GET">
+            <input type="search" name="q" id="search" value="{{ request.GET.q }}" style="width: 300px;"> 
+            <input type="submit" value="Search"><hr>
+          </form>
+          {% for contact in contact_list %}
+            <div class="panel panel-default">
+              <div class="panel-body" style="height: 130px;">
+                <img src="{{contact.image}}" alt="{{contact.name}}" width="100" height="100">
+                <div style="margin-left: 110px; margin-top: -100px;">
+                    <h3>{{contact.name}}</h3>
+                    <label for="number"> <b>Number:</b> {{contact.number}}</label> <br />
+                </div>
+                {% comment %} <a href="{% url 'todo_update' todo_id=todo.id %}" class="pull-left" class="todo_update">Edit</a> <br>
+                <a href="{% url 'todo_delete' todo_id=todo.id %}" class="pull-left" class="todo_delete">Delete</a> {% endcomment %}
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+  
+  {% endblock content %}
+</body>  

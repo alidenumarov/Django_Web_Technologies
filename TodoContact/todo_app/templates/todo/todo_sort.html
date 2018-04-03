@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+<head>
+        <link rel="stylesheet" href="todo_style.css">
+</head>
+<body>
+    {% block content %}
+        <div class="well">
+          <a href="/todos/create">Add Todo</a>
+          <a href="/todos/">Desort by Priority</a>
+          {% for todo in todo_list %}
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3>{{todo.title}}</h3>
+                <label class="priority" for="priority"> <b>Priority:</b> {{todo.priority}}</label> <br />
+                <a href="{% url 'todo_update' todo_id=todo.id %}" class="pull-left" class="todo_update">Edit</a> <br>
+                <a href="{% url 'todo_delete' todo_id=todo.id %}" class="pull-left" class="todo_delete">Delete</a>
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+  
+  {% endblock content %}
+</body>  
