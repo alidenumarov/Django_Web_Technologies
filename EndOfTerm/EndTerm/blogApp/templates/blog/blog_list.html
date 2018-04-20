@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+<head>
+        <link rel="stylesheet" href="blog_style.css">
+</head>
+<body>
+    {% block content %}
+        <div class="well">
+          <a href="/blogs/create">Create Blog</a>
+          {% for blog in blog_list %}
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><a href="{% url 'blog_details' blog_id=blog.id %}">{{blog.title}}</a></h3>
+                <label class="created_at" for="created_at"> <b>created_at:</b> {{blog.created_at}}</label> <br />
+                <a href="{% url 'blog_update' blog_id=blog.id %}" class="pull-left" class="blog_update">Edit</a> <br>
+                <a href="{% url 'blog_delete' blog_id=blog.id %}" class="pull-left" class="blog_delete">Delete</a>
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+  
+  {% endblock content %}
+</body>  
